@@ -14,18 +14,12 @@
         android:gravity="center"
         android:textSize="30sp"/>
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/imgvMapa"/>
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Coordenadas"/>
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Aquí van las coordenadas"
+        android:textSize="15sp"
+        android:text="Pulsa el botón buscar para iniciar Google Maps"
         android:id="@+id/edtCoordenadas"/>
 
     <Button
