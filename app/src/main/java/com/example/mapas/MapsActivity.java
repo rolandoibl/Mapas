@@ -11,6 +11,7 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
@@ -33,20 +34,18 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
+        //Permisos para localizacion
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
             ActivityCompat.requestPermissions(this, new String[]{
                     Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION,
             }, REQUEST_CODE_LOCATION);
         }
+
+        //Permitir mi localización
         mMap.setMyLocationEnabled(true);
+        //Activar botones de zoom
         mMap.getUiSettings().setZoomControlsEnabled(true);
+
         //Marcador de Leonardita
         LatLng leonardita = new LatLng(19.325765816730893, -99.18266576076913);
         mMap.addMarker(new MarkerOptions().position(leonardita).title("Leonardita").snippet("Punto de reunión"));
@@ -55,6 +54,18 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         LatLng paradaIng = new LatLng(19.33072866342843,-99.18447636309251);
         mMap.addMarker(new MarkerOptions().position(paradaIng).title("Parada de ingeniería").snippet("Punto de reunión"));
 
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(leonardita,16));
+        //Marcador de Metro CU
+        LatLng metroCU = new LatLng(19.324404562590658,-99.17392790618068);
+        mMap.addMarker(new MarkerOptions().position(metroCU).title("Metro CU").snippet("Destino").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
+
+        //Marcador de Metrobús CU
+        LatLng metrobusCU = new LatLng(19.32410640186133,-99.18772296632872);
+        mMap.addMarker(new MarkerOptions().position(metrobusCU).title("Metrobús CU").snippet("Destino").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
+
+        //Marcador de Metro Copilco
+        LatLng metroCopilco = new LatLng(19.336061453071494,-99.17706653969756);
+        mMap.addMarker(new MarkerOptions().position(metroCopilco).title("Metro Copilco").snippet("Destino").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
+        //Enofoque del mapa al inicio de la actividad
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(leonardita,14));
     }
 }
